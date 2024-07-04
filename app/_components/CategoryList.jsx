@@ -11,7 +11,7 @@ const CategoryList = ({ categoryList }) => {
                 {/* {console.log(category.attributes)} */}
                 {categoryList?.map((category, index) => {
                     return (
-                        <Link href={'/products-category/' + category.attributes.name} key={index} className='flex flex-col items-center bg-green-50 gap-2 p-3 rounded-lg group hover:bg-green-600 cursor-pointer hover:text-white text-green-800'>
+                        <Link href={'/products-category/' + (category?.attributes?.name)} key={index} className='flex flex-col items-center bg-green-50 gap-2 p-3 rounded-lg group hover:bg-green-600 cursor-pointer hover:text-white text-green-800'>
                             <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + (category?.attributes?.icon?.data[0]?.attributes?.url)} width={50} height={50} alt='icon' className='group-hover:scale-125 transition-all ease-in-out' />
                             <h2>{category.attributes.name}</h2>
                         </Link>

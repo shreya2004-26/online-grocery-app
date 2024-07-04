@@ -20,8 +20,7 @@ const getAllProducts = () => axiosClient.get('/products?populate=*').then((res) 
     return res.data.data
 })
 
-const getProductsByCategory = async (category) => await axiosClient.get('/products?filters?[categories][name][$in]=' + category + "&populate=*").then((res) => {
-    console.log(res.data.data)
+const getProductsByCategory = async (category) => await axiosClient.get('/products?filters[categories][name][$in]=' + category + "&populate=*").then(res => {
     return res.data.data
 })
 export default {
