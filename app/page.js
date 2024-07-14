@@ -7,6 +7,7 @@ import ProductList from "./_components/ProductList";
 import Banner from "./_components/Banner";
 import Footer from "./_components/Footer";
 import TopCategoryList from "./(routes)/products-category/_components/TopCategoryList";
+import CheckoutPage from "./_components/CheckoutPage";
 
 export default async function Home() {
   try {
@@ -17,6 +18,10 @@ export default async function Home() {
       <>
 
         <Header />
+        {/* <div className=" mt-10"> */}
+        {/* <CheckoutPage /> */}
+        {/* </div> */}
+
         {/* Slider */}
         <Slider sliderList={sliderList} />
         {/* categoryList */}
