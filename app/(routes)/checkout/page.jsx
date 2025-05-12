@@ -62,9 +62,10 @@ const CheckoutPage = () => {
 
     }
 
+    console.log("catrItemList ", cartItemList)
     const onApprove = (data) => {
         console.log(data)
-        console.log("catrItemList " + cartItemList)
+
         const payLoad = {
             data: {
                 // paymentId: (data.paymentId).toString(),
@@ -74,18 +75,22 @@ const CheckoutPage = () => {
                 phone: phone,
                 zip: zip,
                 address: address,
-                orderItemList: [{ quantity: 2, price: 46, product: 18 }],
-                userId: user.id
+                orderItemList: cartItemList?.map((curr) => {
+                    return { product: curr?.product, price: curr?.amount, quantity: curr?.quantity }
+                }),
+                userId: user.id,
+                orderDate: new Date()
             }
         }
         globalApi.createOrder(payLoad, jwt).then(resp => {
-            // console.log(resp);
+            console.log(resp);
             toast('Order Placed Successfully!')
             cartItemList.forEach((item, index) => {
-                globalApi.deleteCartItem(item.id).then(resp => {
-
+                globalApi.deleteCartItem(item.id).then(res => {
+                    console.log(res)
                 })
             })
+            setTotalCartItem(0)
             router.replace('/order-confirmation')
         })
     }

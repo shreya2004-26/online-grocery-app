@@ -1,12 +1,14 @@
+"use client"
 import Header from '@/app/_components/Header'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import React from 'react'
 
 const page = () => {
-
+    const router = useRouter();
     return (
         <>
             <Header />
@@ -22,7 +24,7 @@ const page = () => {
                         <p>Card Content</p>
                     </CardContent> */}
                     <CardFooter className='pt-5'>
-                        <Button className='bg-green-600'>Track your order</Button>
+                        <Button className='bg-green-600' onClick={() => router.push("/")}>Go to Homepage</Button>
                     </CardFooter>
                 </Card>
             </div>

@@ -8,7 +8,10 @@ import { useRouter } from 'next/navigation'
 
 const CartPage = ({ cartItemList, onDeleteItem }) => {
     const router = useRouter();
-    const jwt = sessionStorage.getItem('jwt')
+    // const jwt = sessionStorage?.getItem('jwt')
+    const jwt = window?.sessionStorage?.getItem("jwt")
+    console.log(jwt)
+    if (!jwt) return null;
     // console.log(cartItemList)
     const [subTotal, setSubTotal] = useState(0);
     const calculateTotal = () => {

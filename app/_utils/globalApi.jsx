@@ -98,12 +98,17 @@ const createOrder = (data, jwt) => axiosClient.post('/orders', data, {
     }
 })
 
-const getMyOrder = (userId, jwt) => axiosClient.get('/orders?filters[userId][$eq]=' + userId + 'populate[orderItemList][product][populate][images]=url').then(resp => {
+const getMyOrder = (userId, jwt) => axiosClient.get('/orders?filters[userId][$eq]=' + userId + '&[populate][orderItemList][products][populate][images]=url', {
+    headers: {
+        Authorization: 'Bearer' + jwt
+    }
+}).then(resp => {
     const response = resp.data.data;
     const orderList = response.map(item => ({
         id: item.id,
         totalOrderAmount: item?.attributes?.totalOrderAmount,
-        orderItemList: item?.attributes?.orderItemList
+        orderItemList: item?.attributes?.orderItemList,
+        orderDate: item?.attributes?.orderDate
     }))
     console.log("orderlist is: " + orderList)
     return orderList
